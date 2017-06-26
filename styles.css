@@ -1,0 +1,46 @@
+body {
+}
+
+#board {
+	width: 800px;
+	height: 500px;
+	background-image: url("images/bg1.jpg");
+  background-size: contain;
+	margin: auto;
+	position: relative;
+}
+
+.chara {
+	height: 200px;
+	width:  200px;
+	position: absolute;
+  margin-bottom: 50px;
+}
+
+#chara1 {
+	background-color: blue;
+	left: 0;
+  bottom: 0;
+	margin-left: 10px;
+}
+
+#chara2 {
+	background-color: red;
+	right: 0;
+  bottom: 0;
+	margin-right: 10px;
+}
+
+button {
+	margin: auto;
+	margin-top: 20px;
+  padding: 15px 32px;
+  color: white;
+  background-color: dimGrey;
+  border-color: black;
+	display: block;
+	border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
