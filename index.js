@@ -5,6 +5,8 @@ var keyRight1Pressed = false;
 var keyLeft1Pressed = false;
 var keyRight2Pressed = false;
 var keyLeft2Pressed = false;
+var keyAttack1Pressed = false;
+var keyAttack2Pressed = false;
 var game;
 
 var gameProperties = {
@@ -21,9 +23,20 @@ function startGame() {
   getGameProperties();
   playerOne = new Player(0, 0, gameProperties);
   playerTwo = new Player(0, 0, gameProperties);
+  playerOne.health = 100;
+  $("#hp1color").html(playerOne.health + " HP");
+  $("#hp1color").width(playerOne.health * 3);
+  playerTwo.health = 100;
+  $("#hp2color").html(playerTwo.health + " HP");
+  $("#hp2color").width(playerTwo.health * 3);
   board.start();
   if (game != 1) game = setInterval(updateState, gameProperties.intervalTime);
   renderGame();
+}
+
+function gameOver() {
+  clearInterval();
+  gameProperties.intervalTime = undefined;
 }
 
 function collision($div1, $div2) {
@@ -41,7 +54,7 @@ function collision($div1, $div2) {
   var r2 = x2 + w2;
 
   if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
-    return true;
+  return true;
 }
 
 function updateState() {
@@ -58,6 +71,55 @@ function updateState() {
   if (keyLeft2Pressed) {
     if (!collision($("#chara1"), $("#chara2")))
       playerTwo.movement('right');
+  }
+  if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2")))) {
+    playerTwo.receiveDamage();
+    var randomBackwardOne = Math.floor(Math.random() * 3) + 1;
+    if (randomBackwardOne == 1) {
+      playerOne.movement('left');
+    } else if (randomBackwardOne == 2) {
+      playerOne.movement('left');
+      playerOne.movement('left');
+      playerOne.movement('left');
+    } else {
+      playerOne.movement('left');
+      playerOne.movement('left');
+      playerOne.movement('left');
+      playerOne.movement('left');
+      playerOne.movement('left');
+    }
+
+    if (playerTwo.health > 10) {
+      $("#hp2color").html(playerTwo.health + " HP");
+    } else {
+      $("#hp2color").html(playerTwo.health);
+    }
+    $("#hp2color").width(playerTwo.health * 3);
+    console.log("Player 2 received 10 pts of damage. Remaining health is " + playerTwo.health + ".");
+  }
+  if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2")))) {
+    playerOne.receiveDamage();
+    var randomBackwardTwo = Math.floor(Math.random() * 3) + 1;
+    if (randomBackwardTwo == 1) {
+      playerTwo.movement('left');
+    } else if (randomBackwardTwo == 2) {
+      playerTwo.movement('left');
+      playerTwo.movement('left');
+      playerTwo.movement('left');
+    } else {
+      playerTwo.movement('left');
+      playerTwo.movement('left');
+      playerTwo.movement('left');
+      playerTwo.movement('left');
+      playerTwo.movement('left');
+    }
+    if (playerOne.health > 10) {
+      $("#hp1color").html(playerOne.health + " HP");
+    } else {
+      $("#hp1color").html(playerOne.health);
+    }
+    $("#hp1color").width(playerOne.health * 3);
+    console.log("Player 1 received 10 pts of damage. Remaining health is " + playerOne.health + ".");
   }
   renderChara();
 }
@@ -76,6 +138,11 @@ $(document).on('keydown', function(e) {
     case "ArrowLeft":
       keyLeft2Pressed = true;
       break;
+    case "x":
+      keyAttack1Pressed = true;
+      break;
+    case ".":
+      keyAttack2Pressed = true;
   }
 });
 
@@ -93,6 +160,11 @@ $(document).on('keyup', function(e) {
     case "ArrowLeft":
       keyLeft2Pressed = false;
       break;
+    case "x":
+      keyAttack1Pressed = false;
+      break;
+    case ".":
+      keyAttack2Pressed = false;
   }
 });
 

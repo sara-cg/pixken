@@ -1,45 +1,84 @@
-body {
-}
+body {}
 
 #board {
-	width: 800px;
-	height: 500px;
-	background-image: url("images/bg1.png");
+  width: 800px;
+  height: 500px;
+  background-image: url("images/bg1.png");
   background-size: cover;
-	margin: auto;
-	position: relative;
+  margin: auto;
+  position: relative;
 }
 
 .chara {
-	height: 200px;
-	width:  200px;
-	position: absolute;
+  height: 200px;
+  width: 200px;
+  position: absolute;
   margin-bottom: 50px;
 }
 
 #chara1 {
-	left: 0;
+  left: 0;
   bottom: 0;
-	margin-left: 10px;
-	background-image: url("images/chara1.png");
+  margin-left: 10px;
+  background-image: url("images/chara1.png");
 }
 
 #chara2 {
-	right: 0;
+  right: 0;
   bottom: 0;
-	margin-right: 10px;
-	background-image: url("images/chara2.png");
+  margin-right: 10px;
+  background-image: url("images/chara2.png");
+}
+
+.hp {
+  height: 20px;
+  width: 300px;
+  position: absolute;
+  border: 1.5px solid black;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+#hp1 {
+  left: 0;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+#hp2 {
+  right: 0;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#hp1color {
+  height: 100%;
+  width: 100%;
+  background-color: green;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+#hp2color {
+	position: absolute;
+	right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 button {
-	margin: auto;
-	margin-top: 20px;
+  margin: auto;
+  margin-top: 20px;
   padding: 15px 32px;
   color: white;
   background-color: dimGrey;
   border-color: black;
-	display: block;
-	border-radius: 50%;
+  display: block;
+  border-radius: 50%;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
