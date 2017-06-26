@@ -17,4 +17,7 @@ Player.prototype.movement = function(direction){
 	}
 	 if (this.x < 0) this.x = 0;
 	// if (this.x > PlayerTwo.x) this.x = PlayerTwo.x;
+
+
+
 };
