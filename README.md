@@ -17,8 +17,8 @@ Give it a try before anyone else!
 * Player 2:<br/>
 **Right**: Right Arrow<br/>
 **Left**: Left Arrow<br/>
-**Attack**: Enter<br/>
-**Block**: Right Shift
+**Attack**: . (dot)<br/>
+**Block**: - (dash)
 
 ### Author
 
