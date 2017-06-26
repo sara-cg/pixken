@@ -4,7 +4,7 @@
 It has nothing to do with previous retro games, the colorfulness and delicate style will blow your mind!<br/>
 Give it a try before anyone else!
 
-[Play it here!](https://sara-cg.github.io/project-1/)
+[Play it here!](https://sara-cg.github.io/pixken/)
 
 ## Controls
 
