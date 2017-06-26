@@ -1,6 +1,8 @@
 # PIXKEN
 
-"Pixken" is a 2-player new fighting video game based on the popular "Tekken" series, introducing a refreshed pixel art style. It has nothing to do with previous retro games, the colorfulness and delicate style will blow your mind! Give it a try before anyone else!
+"Pixken" is a 2-player new fighting video game based on the popular "Tekken" series, introducing a refreshed pixel art style.<br/>
+It has nothing to do with previous retro games, the colorfulness and delicate style will blow your mind!<br/>
+Give it a try before anyone else!
 
 [Play it here!](https://sara-cg.github.io/project-1/)
 
