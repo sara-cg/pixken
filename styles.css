@@ -4,8 +4,8 @@ body {
 #board {
 	width: 800px;
 	height: 500px;
-	background-image: url("images/bg1.jpg");
-  background-size: contain;
+	background-image: url("images/bg1.png");
+  background-size: cover;
 	margin: auto;
 	position: relative;
 }
@@ -18,17 +18,17 @@ body {
 }
 
 #chara1 {
-	background-color: blue;
 	left: 0;
   bottom: 0;
 	margin-left: 10px;
+	background-image: url("images/chara1.png");
 }
 
 #chara2 {
-	background-color: red;
 	right: 0;
   bottom: 0;
 	margin-right: 10px;
+	background-image: url("images/chara2.png");
 }
 
 button {

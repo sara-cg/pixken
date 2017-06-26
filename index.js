@@ -26,34 +26,28 @@ function startGame() {
   renderGame();
 }
 
-var overlaps = (function () {
-    function getPositions( elem ) {
-        var pos, width, height;
-        pos = $( elem ).position();
-        width = $( elem ).width() / 2;
-        height = $( elem ).height();
-        return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
-    }
+function collision($div1, $div2) {
+  var x1 = $div1.offset().left;
+  var y1 = $div1.offset().top;
+  var h1 = $div1.outerHeight(true);
+  var w1 = $div1.outerWidth(true);
+  var b1 = y1 + h1;
+  var r1 = x1 + w1;
+  var x2 = $div2.offset().left;
+  var y2 = $div2.offset().top;
+  var h2 = $div2.outerHeight(true);
+  var w2 = $div2.outerWidth(true);
+  var b2 = y2 + h2;
+  var r2 = x2 + w2;
 
-    function comparePositions( p1, p2 ) {
-        var r1, r2;
-        r1 = p1[0] < p2[0] ? p1 : p2;
-        r2 = p1[0] < p2[0] ? p2 : p1;
-        return r1[1] > r2[0] || r1[0] === r2[0];
-    }
-
-    return function ( a, b ) {
-        var pos1 = getPositions( a ),
-            pos2 = getPositions( b );
-        return comparePositions( pos1[0], pos2[0] ) && comparePositions( pos1[1], pos2[1] );
-    };
-})();
-
-overlaps ("#chara1", "#chara2");
+  if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+    return true;
+}
 
 function updateState() {
   if (keyRight1Pressed) {
-    playerOne.movement('right');
+    if (!collision($("#chara1"), $("#chara2")))
+      playerOne.movement('right');
   }
   if (keyLeft1Pressed) {
     playerOne.movement('left');
@@ -62,7 +56,8 @@ function updateState() {
     playerTwo.movement('left');
   }
   if (keyLeft2Pressed) {
-    playerTwo.movement('right');
+    if (!collision($("#chara1"), $("#chara2")))
+      playerTwo.movement('right');
   }
   renderChara();
 }
