@@ -6,17 +6,17 @@
 
 ## Controls
 
-* Player 1:
-⋅⋅*Right: D
-⋅⋅*Left: A
-⋅⋅*Attack: X
-⋅⋅*Block: C
+* Player 1:<br/>
+*Right*: D<br/>
+*Left*: A<br/>
+*Attack*: X<br/>
+*Block*: C
 
-* Player 2:
-⋅⋅*Right: Right Arrow
-⋅⋅*Left: Left Arrow
-⋅⋅*Attack: Enter
-⋅⋅*Block: Right Shift
+* Player 2:<br/>
+*Right*: Right Arrow<br/>
+*Left*: Left Arrow<br/>
+*Attack*: Enter<br/>
+*Block*: Right Shift
 
 ### Author
 
