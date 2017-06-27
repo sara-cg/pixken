@@ -14,7 +14,7 @@ function Player(x, y, gameProperties) {
 Player.prototype.verticalMovement = function() {
   this.y = this.y + this.jumpSpeed * this.gameProperties.intervalTime / 1000;
   this.jumpSpeed = this.jumpSpeed + this.gravity * this.gameProperties.intervalTime / 1000;
-  if (this.y <= 0){
+  if (this.y <= 0) {
     this.y = 0;
     this.jumpSpeed = 0;
   }
@@ -31,6 +31,8 @@ Player.prototype.movement = function(direction) {
       break;
     case "jump":
       if (this.y <= 0) {
+        var soundJump = document.getElementById("audioJump");
+        soundJump.play();
         this.jumpSpeed = this.initialJumpSpeed;
       }
       break;
@@ -42,6 +44,8 @@ Player.prototype.receiveDamage = function(damage) {
   damage = this.strength;
   if (this.health > 0) {
     this.health -= damage;
+    var soundAttack = document.getElementById("audioAttack");
+    soundAttack.play();
     if (this.health === 0) {
       gameOver();
     }

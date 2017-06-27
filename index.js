@@ -21,16 +21,16 @@ var gameProperties = {
   charaWidth: 0
 };
 
-$('#start').on('click', startGame());
+$('#start').on('click', startGame);
 
 function startGame() {
+  var soundStart = document.getElementById("audioStart");
+  soundStart.play();
   getGameProperties();
   playerOne = new Player(0, 0, gameProperties);
   playerTwo = new Player(0, 0, gameProperties);
-  playerOne.health = 100;
   $("#hp1color").html(playerOne.health + " HP");
   $("#hp1color").width(playerOne.health * 3);
-  playerTwo.health = 100;
   $("#hp2color").html(playerTwo.health + " HP");
   $("#hp2color").width(playerTwo.health * 3);
   if (game != 1) game = setInterval(updateState, gameProperties.intervalTime);
