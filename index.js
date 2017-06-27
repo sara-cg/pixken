@@ -103,7 +103,7 @@ function updateState() {
     }
 
 
-    if (playerTwo.health > 10) {
+    if (playerTwo.health > 20) {
       $("#hp2color").html(playerTwo.health + " HP");
     } else {
       $("#hp2color").html(playerTwo.health);
@@ -111,9 +111,12 @@ function updateState() {
     $("#hp2color").width(playerTwo.health * 3);
     console.log("Player 2 received 10 pts of damage. Remaining health is " + playerTwo.health + ".");
 
-    if (playerTwo.health <= 30) {
+    if (playerTwo.health <= 25) {
       $("#hp2color").css({
         "background-color": "red"
+      });
+      $(".p2").css({
+        "color": "red"
       });
     } else if (playerTwo.health <= 50) {
       $("#hp2color").css({
@@ -138,7 +141,7 @@ function updateState() {
       playerTwo.movement('left');
       playerTwo.movement('left');
     }
-    if (playerOne.health > 10) {
+    if (playerOne.health > 20) {
       $("#hp1color").html(playerOne.health + " HP");
     } else {
       $("#hp1color").html(playerOne.health);
@@ -146,9 +149,12 @@ function updateState() {
     $("#hp1color").width(playerOne.health * 3);
     console.log("Player 1 received 10 pts of damage. Remaining health is " + playerOne.health + ".");
 
-    if (playerOne.health <= 30) {
+    if (playerOne.health <= 25) {
       $("#hp1color").css({
         "background-color": "red"
+      });
+      $(".p1").css({
+        "color": "red"
       });
     } else if (playerOne.health <= 50) {
       $("#hp1color").css({
