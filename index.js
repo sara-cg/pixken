@@ -62,6 +62,9 @@ function collision($div1, $div2) {
 }
 
 function updateState() {
+  playerOne.verticalMovement();
+  playerTwo.verticalMovement();
+
   if (keyRight1Pressed) {
     if (!collision($("#chara1"), $("#chara2")))
       playerOne.movement('right');
@@ -76,13 +79,13 @@ function updateState() {
     if (!collision($("#chara1"), $("#chara2")))
       playerTwo.movement('right');
   }
-  if (keyJump1Pressed) {
+  if (keyJump1Pressed && (playerOne.y === 0)) {
     playerOne.movement('jump');
   }
-  if (keyJump2Pressed) {
+  if (keyJump2Pressed && (playerTwo.y === 0)) {
     playerTwo.movement('jump');
   }
-  if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed) {
+  if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed && (playerTwo.y === 0)){
     playerTwo.receiveDamage();
     var randomBackwardOne = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardOne == 1) {
@@ -119,7 +122,7 @@ function updateState() {
     }
 
   }
-  if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock1Pressed) {
+  if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock1Pressed && (playerOne.y === 0)) {
     playerOne.receiveDamage();
     var randomBackwardTwo = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardTwo == 1) {
@@ -236,6 +239,6 @@ function renderGame() {}
 function renderChara() {
   $("#chara1").css("left", playerOne.x);
   $("#chara2").css("right", playerTwo.x);
-  $("#chara1").css("transform", "translateY(-"+playerOne.y+"px)");
-  $("#chara2").css("transform", "translateY(-"+playerTwo.y+"px)");
+  $("#chara1").css("transform", "translateY(-" + playerOne.y + "px)");
+  $("#chara2").css("transform", "translateY(-" + playerTwo.y + "px)");
 }
