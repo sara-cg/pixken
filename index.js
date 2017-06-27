@@ -24,6 +24,7 @@ var gameProperties = {
 $('#start').on('click', startGame);
 
 function startGame() {
+  clearInterval(game);
   var soundStart = document.getElementById("audioStart");
   soundStart.play();
   getGameProperties();
@@ -33,14 +34,24 @@ function startGame() {
   $("#hp1color").width(playerOne.health * 3);
   $("#hp2color").html(playerTwo.health + " HP");
   $("#hp2color").width(playerTwo.health * 3);
-  if (game != 1) game = setInterval(updateState, gameProperties.intervalTime);
+  $("#hp1color").css({
+    "background-color": "green"
+  });
+  $(".p1").css({
+    "color": "black"
+  });
+  $("#hp2color").css({
+    "background-color": "green"
+  });
+  $(".p2").css({
+    "color": "black"
+  });
+  game = setInterval(updateState, gameProperties.intervalTime);
   renderGame();
 }
 
 function gameOver() {
-  clearInterval();
-  gameProperties.intervalTime = undefined;
-  location.reload();
+  clearInterval(game);
 }
 
 function collision($div1, $div2) {
@@ -85,7 +96,7 @@ function updateState() {
   if (keyJump2Pressed && (playerTwo.y === 0)) {
     playerTwo.movement('jump');
   }
-  if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed && (playerTwo.y === 0)){
+  if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed && (playerTwo.y === 0)) {
     playerTwo.receiveDamage();
     var randomBackwardOne = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardOne == 1) {
