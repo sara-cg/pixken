@@ -24,7 +24,8 @@ Player.prototype.receiveDamage = function(damage) {
   damage = this.strength;
   if (this.health > 0) {
     this.health -= damage;
-  } else {
-    gameOver();
+    if (this.health === 0) {
+      gameOver();
+    }
   }
 };

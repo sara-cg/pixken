@@ -7,6 +7,8 @@ var keyRight2Pressed = false;
 var keyLeft2Pressed = false;
 var keyAttack1Pressed = false;
 var keyAttack2Pressed = false;
+var keyBlock1Pressed = false;
+var keyBlock2Pressed = false;
 var game;
 
 var gameProperties = {
@@ -17,7 +19,7 @@ var gameProperties = {
   charaWidth: 0
 };
 
-$('#start').on('click', startGame);
+$('#start').on('click', startGame());
 
 function startGame() {
   getGameProperties();
@@ -29,7 +31,6 @@ function startGame() {
   playerTwo.health = 100;
   $("#hp2color").html(playerTwo.health + " HP");
   $("#hp2color").width(playerTwo.health * 3);
-  board.start();
   if (game != 1) game = setInterval(updateState, gameProperties.intervalTime);
   renderGame();
 }
@@ -37,6 +38,7 @@ function startGame() {
 function gameOver() {
   clearInterval();
   gameProperties.intervalTime = undefined;
+  location.reload();
 }
 
 function collision($div1, $div2) {
@@ -72,7 +74,7 @@ function updateState() {
     if (!collision($("#chara1"), $("#chara2")))
       playerTwo.movement('right');
   }
-  if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2")))) {
+  if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed) {
     playerTwo.receiveDamage();
     var randomBackwardOne = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardOne == 1) {
@@ -89,6 +91,7 @@ function updateState() {
       playerOne.movement('left');
     }
 
+
     if (playerTwo.health > 10) {
       $("#hp2color").html(playerTwo.health + " HP");
     } else {
@@ -96,8 +99,19 @@ function updateState() {
     }
     $("#hp2color").width(playerTwo.health * 3);
     console.log("Player 2 received 10 pts of damage. Remaining health is " + playerTwo.health + ".");
+
+    if (playerTwo.health <= 30) {
+      $("#hp2color").css({
+        "background-color": "red"
+      });
+    } else if (playerTwo.health <= 50) {
+      $("#hp2color").css({
+        "background-color": "orange"
+      });
+    }
+
   }
-  if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2")))) {
+  if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock1Pressed) {
     playerOne.receiveDamage();
     var randomBackwardTwo = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardTwo == 1) {
@@ -120,6 +134,16 @@ function updateState() {
     }
     $("#hp1color").width(playerOne.health * 3);
     console.log("Player 1 received 10 pts of damage. Remaining health is " + playerOne.health + ".");
+
+    if (playerOne.health <= 30) {
+      $("#hp1color").css({
+        "background-color": "red"
+      });
+    } else if (playerOne.health <= 50) {
+      $("#hp1color").css({
+        "background-color": "orange"
+      });
+    }
   }
   renderChara();
 }
@@ -143,6 +167,12 @@ $(document).on('keydown', function(e) {
       break;
     case ".":
       keyAttack2Pressed = true;
+      break;
+    case "c":
+      keyBlock1Pressed = true;
+      break;
+    case "-":
+      keyBlock2Pressed = true;
   }
 });
 
@@ -165,6 +195,12 @@ $(document).on('keyup', function(e) {
       break;
     case ".":
       keyAttack2Pressed = false;
+      break;
+    case "c":
+      keyBlock1Pressed = false;
+      break;
+    case "-":
+      keyBlock2Pressed = false;
   }
 });
 
