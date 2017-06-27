@@ -1,6 +1,7 @@
 function Player(x, y, gameProperties) {
   this.x = x;
   this.y = y;
+  this.previousY = y;
   this.health = 100;
   this.strength = 10;
   this.speed = 300;
@@ -8,7 +9,7 @@ function Player(x, y, gameProperties) {
 }
 
 Player.prototype.movement = function(direction) {
-
+  var that = this;
   switch (direction) {
     case "right":
       this.x += this.speed * this.gameProperties.intervalTime / 1000;
@@ -16,6 +17,10 @@ Player.prototype.movement = function(direction) {
     case "left":
       this.x -= this.speed * this.gameProperties.intervalTime / 1000;
       break;
+    case "jump":
+      this.y = (this.y + 205);
+      setTimeout(function () {
+        that.y = that.previousY;}, 500);
   }
   if (this.x < 0) this.x = 0;
 };

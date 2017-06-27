@@ -5,6 +5,8 @@ var keyRight1Pressed = false;
 var keyLeft1Pressed = false;
 var keyRight2Pressed = false;
 var keyLeft2Pressed = false;
+var keyJump1Pressed = false;
+var keyJump2Pressed = false;
 var keyAttack1Pressed = false;
 var keyAttack2Pressed = false;
 var keyBlock1Pressed = false;
@@ -73,6 +75,12 @@ function updateState() {
   if (keyLeft2Pressed) {
     if (!collision($("#chara1"), $("#chara2")))
       playerTwo.movement('right');
+  }
+  if (keyJump1Pressed) {
+    playerOne.movement('jump');
+  }
+  if (keyJump2Pressed) {
+    playerTwo.movement('jump');
   }
   if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed) {
     playerTwo.receiveDamage();
@@ -162,6 +170,12 @@ $(document).on('keydown', function(e) {
     case "ArrowLeft":
       keyLeft2Pressed = true;
       break;
+    case "w":
+      keyJump1Pressed = true;
+      break;
+    case "ArrowUp":
+      keyJump2Pressed = true;
+      break;
     case "x":
       keyAttack1Pressed = true;
       break;
@@ -190,6 +204,12 @@ $(document).on('keyup', function(e) {
     case "ArrowLeft":
       keyLeft2Pressed = false;
       break;
+    case "w":
+      keyJump1Pressed = false;
+      break;
+    case "ArrowUp":
+      keyJump2Pressed = false;
+      break;
     case "x":
       keyAttack1Pressed = false;
       break;
@@ -216,4 +236,6 @@ function renderGame() {}
 function renderChara() {
   $("#chara1").css("left", playerOne.x);
   $("#chara2").css("right", playerTwo.x);
+  $("#chara1").css("transform", "translateY(-"+playerOne.y+"px)");
+  $("#chara2").css("transform", "translateY(-"+playerTwo.y+"px)");
 }
