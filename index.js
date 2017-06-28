@@ -47,10 +47,14 @@ function startGame() {
     "color": "black"
   });
   game = setInterval(updateState, gameProperties.intervalTime);
-  renderGame();
+  var soundAmbient = document.getElementById("audioAmbient");
+  soundAmbient.play();
 }
 
 function gameOver() {
+
+  var soundGameOver = document.getElementById("audioGameOver");
+  soundGameOver.play();
   clearInterval(game);
 }
 
@@ -134,8 +138,8 @@ function updateState() {
         "background-color": "orange"
       });
     }
-
   }
+
   if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock1Pressed && (playerOne.y === 0)) {
     playerOne.receiveDamage();
     var randomBackwardTwo = Math.floor(Math.random() * 3) + 1;
@@ -173,10 +177,12 @@ function updateState() {
       });
     }
   }
+
   renderChara();
 }
 
 $(document).on('keydown', function(e) {
+  var soundBlock = document.getElementById("audioBlock");
   switch (e.key) {
     case "d":
       keyRight1Pressed = true;
@@ -204,9 +210,11 @@ $(document).on('keydown', function(e) {
       break;
     case "c":
       keyBlock1Pressed = true;
+      soundBlock.play();
       break;
     case "-":
       keyBlock2Pressed = true;
+      soundBlock.play();
   }
 });
 
@@ -250,8 +258,6 @@ function getGameProperties() {
   gameProperties.charaHeight = parseInt($(".chara").css("height") + $(".chara").css("margin-down"));
   gameProperties.charaWidth = parseInt($(".chara").css("width") + $(".chara").css("margin-left") + $(".chara").css("margin-right"));
 }
-
-function renderGame() {}
 
 function renderChara() {
   $("#chara1").css("left", playerOne.x);
