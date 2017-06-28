@@ -12,14 +12,16 @@ Give it a try before anyone else!
 **Right**: D<br/>
 **Left**: A<br/>
 **Jump**: W<br/>
-**Attack**: X<br/>
+**Melee Attack**: X<br/>
+**Ranged Attack**: Z<br/>
 **Block**: C
 
 * Player 2:<br/>
 **Right**: Right Arrow<br/>
 **Left**: Left Arrow<br/>
 **Jump**: Up Arrow<br/>
-**Attack**: . (dot)<br/>
+**Melee Attack**: . (dot)<br/>
+**Ranged Attack**: , (comma)<br/>
 **Block**: - (dash)
 
 ### Author
