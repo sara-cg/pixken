@@ -24,6 +24,12 @@ var gameProperties = {
 $('#start').on('click', startGame);
 
 function startGame() {
+  $(".intro").css({
+    "display": "none"
+  });
+  $(".game-over").css({
+    "display": "none"
+  });
   clearInterval(game);
   var soundStart = document.getElementById("audioStart");
   soundStart.play();
@@ -56,6 +62,9 @@ function gameOver() {
   var soundGameOver = document.getElementById("audioGameOver");
   soundGameOver.play();
   clearInterval(game);
+  $(".game-over").css({
+    "display": "initial"
+  });
 }
 
 function collision($div1, $div2) {
