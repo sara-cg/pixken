@@ -3,12 +3,13 @@ function Player(x, y, gameProperties) {
   this.y = y;
   this.previousY = y;
   this.health = 100;
-  this.strength = 10;
   this.speed = 300;
   this.jumpSpeed = 0;
   this.initialJumpSpeed = 1100;
   this.gravity = -3000;
   this.gameProperties = gameProperties;
+  this.strength = 0;
+  this.magic = 0;
 }
 
 Player.prototype.verticalMovement = function() {
@@ -40,13 +41,27 @@ Player.prototype.movement = function(direction) {
   if (this.x < 0) this.x = 0;
 };
 
-Player.prototype.receiveDamage = function(damage) {
+Player.prototype.receiveDamageMelee = function(damage) {
+  this.strength = Math.floor(Math.exp(Math.random() * Math.log(10 - 5 + 1))) + 5;
   damage = this.strength;
   if (this.health > 0) {
     this.health -= damage;
     var soundAttack = document.getElementById("audioAttack");
     soundAttack.play();
-    if (this.health === 0) {
+    if (this.health <= 0) {
+      gameOver();
+    }
+  }
+};
+
+Player.prototype.receiveDamageRanged = function(damage) {
+  this.magic = Math.floor(Math.exp(Math.random() * Math.log(3 - 1 + 1))) + 1;
+  damage = this.magic;
+  if (this.health > 0) {
+    this.health -= damage;
+    var soundAttack = document.getElementById("audioAttack");
+    soundAttack.play();
+    if (this.health <= 0) {
       gameOver();
     }
   }

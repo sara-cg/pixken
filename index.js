@@ -9,6 +9,8 @@ var keyJump1Pressed = false;
 var keyJump2Pressed = false;
 var keyAttack1Pressed = false;
 var keyAttack2Pressed = false;
+var keyRanged1Pressed = false;
+var keyRanged2Pressed = false;
 var keyBlock1Pressed = false;
 var keyBlock2Pressed = false;
 var game;
@@ -110,7 +112,7 @@ function updateState() {
     playerTwo.movement('jump');
   }
   if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed && (playerTwo.y === 0)) {
-    playerTwo.receiveDamage();
+    playerTwo.receiveDamageMelee();
     var randomBackwardOne = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardOne == 1) {
       playerOne.movement('left');
@@ -125,32 +127,34 @@ function updateState() {
       playerOne.movement('left');
       playerOne.movement('left');
     }
+  }
 
+  if (keyRanged1Pressed && !keyBlock2Pressed && (playerTwo.y === 0)) {
+    playerTwo.receiveDamageRanged();
+  }
 
-    if (playerTwo.health > 20) {
-      $("#hp2color").html(playerTwo.health + " HP");
-    } else {
-      $("#hp2color").html(playerTwo.health);
-    }
-    $("#hp2color").width(playerTwo.health * 3);
-    console.log("Player 2 received 10 pts of damage. Remaining health is " + playerTwo.health + ".");
+  if (playerTwo.health > 20) {
+    $("#hp2color").html(playerTwo.health + " HP");
+  } else {
+    $("#hp2color").html(playerTwo.health);
+  }
+  $("#hp2color").width(playerTwo.health * 3);
 
-    if (playerTwo.health <= 25) {
-      $("#hp2color").css({
-        "background-color": "red"
-      });
-      $(".p2").css({
-        "color": "red"
-      });
-    } else if (playerTwo.health <= 50) {
-      $("#hp2color").css({
-        "background-color": "orange"
-      });
-    }
+  if (playerTwo.health <= 25) {
+    $("#hp2color").css({
+      "background-color": "red"
+    });
+    $(".p2").css({
+      "color": "red"
+    });
+  } else if (playerTwo.health <= 50) {
+    $("#hp2color").css({
+      "background-color": "orange"
+    });
   }
 
   if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock1Pressed && (playerOne.y === 0)) {
-    playerOne.receiveDamage();
+    playerOne.receiveDamageMelee();
     var randomBackwardTwo = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardTwo == 1) {
       playerTwo.movement('left');
@@ -165,29 +169,33 @@ function updateState() {
       playerTwo.movement('left');
       playerTwo.movement('left');
     }
-    if (playerOne.health > 20) {
-      $("#hp1color").html(playerOne.health + " HP");
-    } else {
-      $("#hp1color").html(playerOne.health);
-    }
-    $("#hp1color").width(playerOne.health * 3);
-    console.log("Player 1 received 10 pts of damage. Remaining health is " + playerOne.health + ".");
-
-    if (playerOne.health <= 25) {
-      $("#hp1color").css({
-        "background-color": "red"
-      });
-      $(".p1").css({
-        "color": "red"
-      });
-    } else if (playerOne.health <= 50) {
-      $("#hp1color").css({
-        "background-color": "orange"
-      });
-    }
   }
 
-  renderChara();
+  if (keyRanged2Pressed && !keyBlock1Pressed && (playerOne.y === 0)) {
+    playerOne.receiveDamageRanged();
+  }
+
+  if (playerOne.health > 20) {
+    $("#hp1color").html(playerOne.health + " HP");
+  } else {
+    $("#hp1color").html(playerOne.health);
+  }
+  $("#hp1color").width(playerOne.health * 3);
+
+  if (playerOne.health <= 25) {
+    $("#hp1color").css({
+      "background-color": "red"
+    });
+    $(".p1").css({
+      "color": "red"
+    });
+  } else if (playerOne.health <= 50) {
+    $("#hp1color").css({
+      "background-color": "orange"
+    });
+  }
+
+renderChara();
 }
 
 $(document).on('keydown', function(e) {
@@ -216,6 +224,12 @@ $(document).on('keydown', function(e) {
       break;
     case ".":
       keyAttack2Pressed = true;
+      break;
+    case "z":
+      keyRanged1Pressed = true;
+      break;
+    case ",":
+      keyRanged2Pressed = true;
       break;
     case "c":
       keyBlock1Pressed = true;
@@ -252,6 +266,12 @@ $(document).on('keyup', function(e) {
       break;
     case ".":
       keyAttack2Pressed = false;
+      break;
+    case "z":
+      keyRanged1Pressed = false;
+      break;
+    case ",":
+      keyRanged2Pressed = false;
       break;
     case "c":
       keyBlock1Pressed = false;
