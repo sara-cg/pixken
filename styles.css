@@ -5,7 +5,7 @@ body {
 #board {
   width: 800px;
   height: 500px;
-  background-image: url("images/bg1.png");
+  background-image: url("images/nivel.JPG");
   background-size: cover;
   margin: auto;
   position: relative;
@@ -24,14 +24,16 @@ body {
   left: 0;
   bottom: 0;
   margin-left: 10px;
-  background-image: url("images/chara1.png");
+  background-image: url("images/chara1.gif");
+  background-size: cover;
 }
 
 #chara2 {
   right: 0;
   bottom: 0;
   margin-right: 10px;
-  background-image: url("images/chara2.png");
+  background-image: url("images/chara2.gif");
+  background-size: cover;
 }
 
 .hp {
@@ -101,7 +103,7 @@ body {
   width: 800px;
   height: 500px;
   background-image: url("images/intro.png");
-  background-size:contain;
+  background-size: contain;
   background-color: white;
   top: 1%;
   left: 19%;
@@ -115,7 +117,7 @@ body {
   width: 600px;
   height: 375px;
   background-image: url("images/gameOver.jpg");
-  background-size:contain;
+  background-size: contain;
   top: 10%;
   left: 27%;
   position: fixed;

@@ -112,6 +112,14 @@ function updateState() {
     playerTwo.movement('jump');
   }
   if (keyAttack1Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock2Pressed && (playerTwo.y === 0)) {
+    $("#chara2").css({
+      "background-image": "url('images/chara2red.gif')"
+    });
+    setInterval(function() {
+      $("#chara2").css({
+        "background-image": "url('images/chara2.gif')"
+      });
+    }, 1000);
     playerTwo.receiveDamageMelee();
     var randomBackwardOne = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardOne == 1) {
@@ -130,6 +138,14 @@ function updateState() {
   }
 
   if (keyRanged1Pressed && !keyBlock2Pressed && (playerTwo.y === 0)) {
+    $("#chara2").css({
+      "background-image": "url('images/chara2red.gif')"
+    });
+    setInterval(function() {
+      $("#chara2").css({
+        "background-image": "url('images/chara2.gif')"
+      });
+    }, 1000);
     playerTwo.receiveDamageRanged();
   }
 
@@ -154,6 +170,14 @@ function updateState() {
   }
 
   if (keyAttack2Pressed && (collision($("#chara1"), $("#chara2"))) && !keyBlock1Pressed && (playerOne.y === 0)) {
+    $("#chara1").css({
+      "background-image": "url('images/chara1red.gif')"
+    });
+    setInterval(function() {
+      $("#chara1").css({
+        "background-image": "url('images/chara1.gif')"
+      });
+    }, 1000);
     playerOne.receiveDamageMelee();
     var randomBackwardTwo = Math.floor(Math.random() * 3) + 1;
     if (randomBackwardTwo == 1) {
@@ -172,6 +196,14 @@ function updateState() {
   }
 
   if (keyRanged2Pressed && !keyBlock1Pressed && (playerOne.y === 0)) {
+    $("#chara1").css({
+      "background-image": "url('images/chara1red.gif')"
+    });
+    setInterval(function() {
+      $("#chara1").css({
+        "background-image": "url('images/chara1.gif')"
+      });
+    }, 1000);
     playerOne.receiveDamageRanged();
   }
 
@@ -195,7 +227,7 @@ function updateState() {
     });
   }
 
-renderChara();
+  renderChara();
 }
 
 $(document).on('keydown', function(e) {
