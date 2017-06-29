@@ -105,8 +105,6 @@ body {
   background-image: url("images/intro.png");
   background-size: contain;
   background-color: white;
-  top: 1%;
-  left: 19%;
   position: fixed;
   border: 5px solid white;
   border-style: dashed;
@@ -118,9 +116,10 @@ body {
   height: 375px;
   background-image: url("images/gameOver.jpg");
   background-size: contain;
-  top: 10%;
-  left: 27%;
   position: fixed;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -25%);
   border: 5px solid white;
   border-style: dashed;
   display: none;
